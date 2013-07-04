@@ -72,6 +72,12 @@ module.exports = function(grunt) {
           if (options.client && options.amd && options.namespace === false) {
             compiled = 'return ' + compiled;
           }
+          if(options.client && options.commonjs && options.namespace === false){
+             exp = "window.require.define({\'"+filename+"\': function(exports, require, module) {"
+             exp += 'var jade = jade || require(\'jade\').runtime;'
+             exp += 'return ' + compiled;
+             exp += '}});'
+          }
         } catch (e) {
           grunt.log.error(e);
           grunt.fail.warn('Jade failed to compile '+filepath+'.');
