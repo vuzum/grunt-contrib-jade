@@ -73,10 +73,11 @@ module.exports = function(grunt) {
             compiled = 'return ' + compiled;
           }
           if(options.client && options.commonjs && options.namespace === false){
-             exp = "window.require.define({\'"+filename+"\': function(exports, require, module) {"
-             exp += 'var jade = jade || require(\'jade\').runtime;'
+             var exp = "window.require.define({\'"+filename+"\': function(exports, require, module) {\n"
+             exp += 'var jade = jade || require(\'jade\').runtime;\n'
              exp += 'return ' + compiled;
-             exp += '}});'
+             exp += ';}});'
+            compiled= exp;
           }
         } catch (e) {
           grunt.log.error(e);
