@@ -75,7 +75,7 @@ module.exports = function(grunt) {
           if(options.client && options.commonjs && options.namespace === false){
              var exp = "window.require.define({\'"+filename+"\': function(exports, require, module) {\n"
              exp += 'var jade = window.jade || require(\'jade\').runtime;\n'
-             exp += 'return ' + compiled;
+             exp += 'module.exports=' + compiled;
              exp += ';}});'
             compiled= exp;
           }
